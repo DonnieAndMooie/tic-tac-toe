@@ -11,6 +11,7 @@ body{
     display: flex;
     align-items: center;
     flex-direction: column;
+    background-color: rgb(219, 213, 213);
 }
 
 h1{
@@ -32,4 +33,9 @@ h1{
     align-items: center;
     color: red;
     font-size: 90px;
+}
+
+.output-winner{
+    color: blue;
+    font-size: 80px;
 }

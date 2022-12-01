@@ -32,6 +32,10 @@ const gameBoard = (() => {
                         currentMarker = marker1
                     }
                     displayController.updateGrid()
+                    let gameOver = game.checkGameOver()
+                    if (gameOver === true){
+                        currentMarker = null
+                    }
                 }})
             
             
@@ -44,6 +48,77 @@ const gameBoard = (() => {
 const Player = (marker) => {
     return {marker}
 }
+
+const game = (() => {
+    const checkGameOver = () => {
+        const outputDiv = document.querySelector(".output-winner")
+        const currentBoard = gameBoard.board
+        if (currentBoard[0] === currentBoard[1] 
+            && currentBoard[1] === currentBoard[2]
+            && currentBoard[0] !== ""){
+             outputDiv.textContent = currentBoard[0] + " WINS!"
+             return true
+        }
+        else if (currentBoard[3] === currentBoard[4] 
+            && currentBoard[4] === currentBoard[5]
+            && currentBoard[3] !== ""){
+             outputDiv.textContent = currentBoard[3] + " WINS!"
+             return true
+        }
+        else if (currentBoard[6] === currentBoard[7] 
+            && currentBoard[7] === currentBoard[8]
+            && currentBoard[6] !== ""){
+             outputDiv.textContent = currentBoard[6] + " WINS!"
+             return true
+        }
+        else if (currentBoard[0] === currentBoard[3] 
+            && currentBoard[3] === currentBoard[6]
+            && currentBoard[0] !== ""){
+             outputDiv.textContent = currentBoard[0] + " WINS!"
+             return true
+        }
+        else if (currentBoard[1] === currentBoard[4] 
+            && currentBoard[4] === currentBoard[7]
+            && currentBoard[1] !== ""){
+             outputDiv.textContent = currentBoard[1] + " WINS!"
+             return true
+        }
+        else if (currentBoard[2] === currentBoard[5] 
+            && currentBoard[5] === currentBoard[8]
+            && currentBoard[2] !== ""){
+             outputDiv.textContent = currentBoard[2] + " WINS!"
+             return true
+        }
+        else if (currentBoard[0] === currentBoard[4] 
+            && currentBoard[4] === currentBoard[8]
+            && currentBoard[0] !== ""){
+             outputDiv.textContent = currentBoard[0] + " WINS!"
+             return true
+        }
+        else if (currentBoard[2] === currentBoard[4] 
+            && currentBoard[4] === currentBoard[6]
+            && currentBoard[2] !== ""){
+             outputDiv.textContent = currentBoard[2] + " WINS!"
+             return true
+        }
+        else{
+            for (let i=0; i<9; i++){
+                if (currentBoard[i] === ""){
+                    outputDiv.textContent = ""
+                    return
+                }
+                else{
+                    outputDiv.textContent = "IT'S A DRAW!"
+                }
+                
+            }
+            
+        }
+        return
+        
+    }
+    return {checkGameOver}
+})()
 
 const player1 = Player("X")
 const player2 = Player("O")
