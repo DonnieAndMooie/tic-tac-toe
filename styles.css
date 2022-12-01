@@ -17,6 +17,7 @@ body{
 h1{
     color: blue;
     font-size: 60px;
+    margin-bottom: 20px;
 }
 
 .grid-container{
@@ -38,4 +39,21 @@ h1{
 .output-winner{
     color: blue;
     font-size: 80px;
+}
+
+.start{
+    width: 300px;
+    height: 100px;
+    margin-bottom: 50px;
+    font-size: 40px;
+    background-color: rgb(180, 140, 218);
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+}
+
+input{
+    margin-bottom: 20px;
 }
