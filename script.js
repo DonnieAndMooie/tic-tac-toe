@@ -44,9 +44,36 @@
         }
         return board
     }
+
+    const updateBoardVsAI = (marker1, marker2, name1, name2) => {
+        aiStartBtn.textContent = "Restart"
+        const squares = document.querySelectorAll(".square");
+        displayController.updateGrid()
+        for (const square of squares){
+            index = square.getAttribute("index")
+            square.addEventListener("click", (e) => {
+                let index = e.target.getAttribute("index")
+                if (board[index] === ""){
+                    board[index] = marker1
+                    let randomChoice = Math.floor((Math.random() * 9));
+                    while (board[randomChoice] !== ""){
+                        randomChoice = Math.floor((Math.random() * 9));
+                    }
+                    board[randomChoice] = marker2
+                    }
+                    displayController.updateGrid()
+                    let gameOver = game.checkGameOver(name1, name2)
+                    if (gameOver === true){
+                        currentMarker = null
+                    }
+                })
+            }}
+                
+            
     
-        return {board, updateBoard}
-    })()
+
+        return {board, updateBoard, updateBoardVsAI}
+        })()
 
     const Player = (marker, name) => {
         return {marker, name}
@@ -156,9 +183,12 @@
     })()
 
 const startBtn = document.querySelector(".start")
+const aiStartBtn = document.querySelector(".ai-start")
 const player1Name = document.getElementById("player1")
 const player2Name = document.getElementById("player2")
 const outputDiv = document.querySelector(".output-winner")
+const squares = document.querySelectorAll(".square");
+
 
 startBtn.addEventListener("click", () => {
     if (player1Name.value === "" || player2Name.value === ""){
@@ -172,3 +202,13 @@ startBtn.addEventListener("click", () => {
     gameBoard.updateBoard(player1.marker, player2.marker, player1.name, player2.name)
     }})
     
+
+aiStartBtn.addEventListener("click", () => {
+    const player1 = Player("X", player1Name.value)
+    const player2 = Player("O", "AI")
+    event.preventDefault()
+    gameBoard.board.fill("")
+    outputDiv.textContent = ""
+    gameBoard.updateBoardVsAI(player1.marker, player2.marker, player1.name, "AI")
+
+})
