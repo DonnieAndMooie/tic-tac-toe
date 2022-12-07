@@ -18,6 +18,7 @@ h1{
     color: blue;
     font-size: 60px;
     margin-bottom: 20px;
+    margin-top: 10px;
 }
 
 .grid-container{
@@ -38,15 +39,16 @@ h1{
 
 .output-winner{
     color: blue;
-    font-size: 80px;
+    font-size: 70px;
 }
 
 .start,
-.ai-start{
+.ai-start,
+.ai-start-hard{
     width: 300px;
-    height: 75px;
+    height: 50px;
     margin-bottom: 20px;
-    font-size: 40px;
+    font-size: 30px;
     background-color: rgb(180, 140, 218);
 }
 
